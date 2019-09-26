@@ -13,6 +13,19 @@ class LoginForm extends Component {
         }
     }
 
+    changeInput(type, value) {
+        switch (type) {
+            case 'EMAIL':
+                this.setState({username : value});
+                this.props.onUpdateEmail(value);
+                break;
+            case 'PASSWORD' :
+                this.setState({password : value});
+                this.props.onUpdatePassword(value);
+                break;
+        }
+    }
+
 
     render() {
         return (
@@ -21,14 +34,14 @@ class LoginForm extends Component {
                 <Input 
                     title={'Email'}
                     value={this.state.username}
-                    handleChange={(username) => this.setState({username})}
+                    handleChange={(username) => this.changeInput('EMAIL', username)}
                 />
                 
                 <Input 
                     title={'Password'} 
                     value={this.state.password}
                     secure={this.state.passwordHidden}
-                    handleChange={(password) => this.setState({password})}
+                    handleChange={(password) => this.changeInput('PASSWORD', password)}
                 >
                     <button 
                         style={{fontSize:'2em'}}
